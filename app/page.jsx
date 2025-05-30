@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { connectDb } from '../lib/db';
 import { Restaurant } from '../models/Restaurant';
@@ -17,7 +18,6 @@ export default async function Home() {
           </div>
         ))}
       </div>
-      <Link href="/admin" className="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full">Admin</Link>
     </main>
   );
 }
