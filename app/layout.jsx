@@ -1,16 +1,5 @@
-// app/layout.jsx
-import '../globals.css';          // adjust path if needed
-import Footer from '../components/Footer';
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className="flex min-h-screen flex-col bg-gray-50">
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
-  );
-}
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet"/>
+</head>

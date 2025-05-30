@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* globals.css */
+.btn    { @apply px-4 py-2 bg-primary text-white rounded hover:bg-secondary; }
+.btn-sm { @apply px-2 py-1 bg-primary text-white rounded; }
+.btn-red{ @apply px-4 py-2 bg-red-600 text-white rounded; }
+.input  { @apply border p-2 rounded w-full; }
+.textarea { @apply border p-2 rounded w-full; }
