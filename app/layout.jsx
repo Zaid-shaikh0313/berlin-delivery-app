@@ -1,6 +1,7 @@
 // app/layout.jsx
 import './globals.css';
 import Footer from '../components/Footer';
+import Providers from './providers';
 
 export const metadata = {
   title: 'Berlin Delivery',
@@ -19,8 +20,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="flex min-h-screen flex-col bg-gray-50">
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <Providers>
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

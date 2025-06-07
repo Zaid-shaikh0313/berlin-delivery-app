@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function AdminPage() {
@@ -14,7 +14,7 @@ export default function AdminPage() {
   const [list, setList] = useState([]);
 
   // fetch restaurant list once signed-in
-  useState(() => {
+  useEffect(() => {
     if (session) {
       fetch('/api/restaurants')
         .then(r => r.json())
