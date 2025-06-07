@@ -47,7 +47,12 @@ export default async function Home() {
           </div>
         )}
 
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center space-x-4">
+          <Link href="/visuals">
+            <button className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+              Visuals
+            </button>
+          </Link>
           <Link href="/admin">
             <button className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
               Admin
