@@ -12,7 +12,9 @@ export default function CartPage() {
   const total = subtotal + fee;
 
   async function calcFee() {
-    const res = await fetch(`/api/delivery-fee?zip=${zip}`);
+    const restId = cart[0]?.restId;
+    if (!restId) return;
+    const res = await fetch(`/api/delivery-fee?zip=${zip}&restId=${restId}`);
     const data = await res.json();
     setFee(data.fee);
   }
