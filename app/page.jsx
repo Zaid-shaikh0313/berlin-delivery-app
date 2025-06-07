@@ -1,14 +1,23 @@
 // app/page.jsx
-export const dynamic = 'force-dynamic';
-
+'use client';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { connectDb } from '../lib/db';
-import { Restaurant } from '../models/Restaurant';
 
-export default async function Home() {
-  await connectDb();
-  const restaurants = await Restaurant.find().lean();
+export default function Home() {
+  const [restaurants, setRestaurants] = useState([]);
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    fetch('/api/restaurants')
+      .then(r => r.json())
+      .then(setRestaurants);
+  }, []);
+
+  const filtered = restaurants.filter(r =>
+    r.name.toLowerCase().includes(query.toLowerCase()) ||
+    r.description.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <main>
@@ -28,21 +37,31 @@ export default async function Home() {
 
       <div className="p-8">
         <h2 className="text-3xl mb-4">Our Restaurants</h2>
+        <div className="mb-4">
+          <input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search restaurants..."
+            className="input"
+          />
+        </div>
 
-        {restaurants.length === 0 ? (
-          <p className="text-gray-500">No restaurants yet—check back soon!</p>
+        {filtered.length === 0 ? (
+          <p className="text-gray-500">No restaurants found.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {restaurants.map((r) => (
-              <div key={r._id} className="border p-4 rounded shadow hover:shadow-lg transition">
-                <img
-                  src={r.image}
-                  alt={r.name}
-                  className="h-40 w-full object-cover rounded"
-                />
-                <h3 className="mt-2 text-xl font-medium">{r.name}</h3>
-                <p className="text-gray-600">{r.description}</p>
-              </div>
+            {filtered.map((r) => (
+              <Link key={r._id} href={`/restaurants/${r._id}`}>
+                <div className="border p-4 rounded shadow hover:shadow-lg transition cursor-pointer">
+                  <img
+                    src={r.image}
+                    alt={r.name}
+                    className="h-40 w-full object-cover rounded"
+                  />
+                  <h3 className="mt-2 text-xl font-medium">{r.name}</h3>
+                  <p className="text-gray-600">{r.description}</p>
+                </div>
+              </Link>
             ))}
           </div>
         )}
