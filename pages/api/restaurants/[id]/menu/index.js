@@ -1,6 +1,6 @@
 import nc from 'next-connect';
-import { connectDb } from '../../../../lib/db';
-import { Restaurant } from '../../../../models/Restaurant';
+import { connectDb } from '../../../../../lib/db';
+import { Restaurant } from '../../../../../models/Restaurant';
 const handler = nc();
 
 handler.get(async (req, res) => {
